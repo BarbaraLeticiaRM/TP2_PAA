@@ -21,4 +21,7 @@ int bbEhPromissora(int* solucao, int* melhor, int n);
 // Realiza o Branch and Bound para Otimização
 void bbOtimizacao(int** mat, int* solucao, int* melhor, int n, int i);
 
+// Altera a matriz de adjacência recebida como parâmetro para a entrada do problema de Clique
+void entradaClique(int** mat, int n);
+
 #endif

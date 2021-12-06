@@ -91,3 +91,17 @@ void bbOtimizacao(int** mat, int* solucao, int* melhor, int n, int i){
         }
     }
 }
+
+// Altera a matriz de adjacência recebida como parâmetro para a entrada do problema de Clique
+void entradaClique(int** mat, int n){
+    for(int i = 0; i < n; i ++){
+        for(int j = 0; j < n; j ++){
+            if(i == j)
+                mat[i][j] = 0;
+            else if(mat[i][j] == 0)
+                mat[i][j] = 1;
+            else
+                mat[i][j] = 0;
+        }
+    }
+}
