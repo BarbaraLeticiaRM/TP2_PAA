@@ -1,5 +1,12 @@
 #include "funcoes.h"
 
+// Função faz com que os elementos de "v" se tornem os elementos de "v2", ambos vetores de inteiros de tamanho n
+void igualaVetor(int* v, int* v2, int n){
+    for(int i = 0; i < n; i++){
+        v[i] = v2[i];
+    }
+}
+
 // Imprime todos os valores de um vetor de inteiros de tamanho n
 void imprimeVetor(int* v, int n){
     int quebraLinha = 0;

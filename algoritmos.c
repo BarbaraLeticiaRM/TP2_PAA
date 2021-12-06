@@ -13,7 +13,9 @@ int* bbConjuntoIndependente(int** mat, int n){
 
     bbOtimizacao(mat, solucao, melhor, n, 0);
 
-    return solucao;
+    free(solucao);
+
+    return melhor;
 }
 
 // Verifica se a solução é completa ou não, retornando 1 ou 0, respectivamente
@@ -73,18 +75,14 @@ int bbEhPromissora(int* solucao, int* melhor, int n){
 void bbOtimizacao(int** mat, int* solucao, int* melhor, int n, int i){
     int j;
 
-    printf("solucao:\n");
-    imprimeVetor(solucao, n);
-    printf("\n");
-
     if(bbEhCompleta(solucao, n)){
-        melhor = solucao;
-        printf("entrou.\n");
+        igualaVetor(melhor, solucao, n);
     }
     else{
         j = 0;
         while(j <= 1){
             solucao[i] = j;
+
             if(bbEhConsistente(mat, solucao, n) && bbEhPromissora(solucao, melhor, n)){
                 bbOtimizacao(mat, solucao, melhor, n, i+1);
             }

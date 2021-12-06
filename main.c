@@ -11,10 +11,16 @@ int main(){
     double tempos[3]; // Vetor para armazenar o tempo 
 
     // 3 instâncias sendo geradas
-    for(int instancia = 0; instancia < 1; instancia++){ /////////////ESTÁ RODANDO SÓ UMA VEZ
+    for(int instancia = 0; instancia < 3; instancia++){
         iniciarTempo(&a);
         
-        matriz = leGrafo("grafo4.txt", &n);
+        if(instancia == 0)
+            matriz = leGrafo("grafo1.txt", &n);
+        else if(instancia == 1)
+            matriz = leGrafo("grafo2.txt", &n);
+        else
+            matriz = leGrafo("grafo3.txt", &n);
+
         solucao = bbConjuntoIndependente(matriz, n);
         printf("solucao:\n");
         imprimeVetor(solucao, n);

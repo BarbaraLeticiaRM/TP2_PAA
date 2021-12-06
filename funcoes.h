@@ -5,6 +5,9 @@
 #include <stdlib.h>
 #include <time.h>
 
+// Função faz com que os elementos de "v" se tornem os elementos de "v2", ambos vetores de inteiros de tamanho n
+void igualaVetor(int* v, int* v2, int n);
+
 // Imprime todos os valores de um vetor de inteiros de tamanho n
 void imprimeVetor(int* v, int n);
 
