@@ -5,9 +5,10 @@ int main(int argc, char* argv[]){
     srand(time(NULL)); // seed aleatória
 
     Analise a;
-    int n, flagClique = 0, flagSatisfabilidade = 0;
+    int n, nLinhasRotulos, nColunasRotulos, flagClique = 0, flagSatisfabilidade = 0;
     int* solucao;
     int** matriz;
+    int** rotulos;
     double media;
     double tempos[3]; // Vetor para armazenar o tempo
 
@@ -31,21 +32,39 @@ int main(int argc, char* argv[]){
     for(int instancia = 0; instancia < 3; instancia++){
         iniciarTempo(&a);
         
-        if(instancia == 0)
-            matriz = leGrafo("grafo1.txt", &n);
-        else if(instancia == 1)
-            matriz = leGrafo("grafo2.txt", &n);
-        else
-            matriz = leGrafo("grafo3.txt", &n);
-
+        if(flagSatisfabilidade == 0){
+            if(instancia == 0)
+                matriz = leGrafo("grafo1.txt", &n);
+            else if(instancia == 1)
+                matriz = leGrafo("grafo2.txt", &n);
+            else
+                matriz = leGrafo("grafo3.txt", &n);
+        }
+        else{
+            if(instancia == 0)
+                rotulos = leFormula("formula1.txt", &nLinhasRotulos, &nColunasRotulos);
+            else if(instancia == 1)
+                rotulos = leFormula("formula2.txt", &nLinhasRotulos, &nColunasRotulos);
+            else
+                rotulos = leFormula("formula3.txt", &nLinhasRotulos, &nColunasRotulos);
+            
+            matriz = rotulosEmMatriz(rotulos, nLinhasRotulos, nColunasRotulos, &n);
+        }
+        
         // Tratando o problema do Clique
         if(flagClique)
             entradaClique(matriz, n);
 
         solucao = bbConjuntoIndependente(matriz, n);
         printf("solucao:\n");
-        imprimeVetor(solucao, n);
-        printf("\n");
+
+        if(flagSatisfabilidade == 0){
+            imprimeVetor(solucao, n);
+            printf("\n");
+        }
+        else{
+            saidaSatisfabilidade(rotulos, solucao, nLinhasRotulos, nColunasRotulos, n);
+        }
 
         finalizarTempo(&a);
         tempos[instancia] = (getDeltaTempo(&a));
@@ -55,6 +74,11 @@ int main(int argc, char* argv[]){
         for(int i = 0; i < n; i++)
             free(matriz[i]);
         free(matriz);
+        if(flagSatisfabilidade){
+            for(int i = 0; i < nLinhasRotulos; i++)
+                free(rotulos[i]);
+            free(rotulos);
+        }
     }
 
     // Imprimindo o tempo gasto das instâncias e a média do tempo

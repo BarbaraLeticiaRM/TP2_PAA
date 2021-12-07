@@ -105,3 +105,40 @@ void entradaClique(int** mat, int n){
         }
     }
 }
+
+// Gera a saída para o problema de Satisfabilidade
+void saidaSatisfabilidade(int** rotulos, int* solucao, int nLinhasRotulos, int nColunasRotulos, int n){
+    int aux = 0, l, c;
+
+    for(int i = 0; i < n; i++){
+        if(solucao[i] == 1)
+            aux++;
+    }
+
+    if(aux < nLinhasRotulos){
+        printf("A formula nao eh satisfativel.\n");
+    }
+    else{
+        // Vetor auxiliar que irá armazenar os valores-verdade para cada literal
+        int vetAux[nColunasRotulos];
+        for(int i = 0; i < nColunasRotulos; i++)
+            vetAux[i] = -1;
+
+        for(int i = 0; i < n; i++){
+            if(solucao[i] == 1){
+                mapeiaSolucao(rotulos, nLinhasRotulos, nColunasRotulos, i, &l, &c);
+                vetAux[c] = rotulos[l][c];
+            }
+        }
+
+        // Imprimindo a saída
+        for(int i = 0; i < nColunasRotulos; i++){
+            if(vetAux[i] == 0)
+                printf("Variavel %d: falso\n", i+1);
+            else if(vetAux[i] == 1)
+                printf("Variavel %d: verdadeiro\n", i+1);
+            else
+                printf("Variavel %d: falso / verdadeiro\n", i+1);
+        }
+    }
+}

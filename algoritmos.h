@@ -24,4 +24,7 @@ void bbOtimizacao(int** mat, int* solucao, int* melhor, int n, int i);
 // Altera a matriz de adjacência recebida como parâmetro para a entrada do problema de Clique
 void entradaClique(int** mat, int n);
 
+// Gera a saída para o problema de Satisfabilidade
+void saidaSatisfabilidade(int** rotulos, int* solucao, int nLinhasRotulos, int nColunasRotulos, int n);
+
 #endif

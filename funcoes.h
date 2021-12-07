@@ -30,4 +30,18 @@ double calculaMedia(double* v, int n);
 // Lê um grafo armazenado em um arquivo texto, onde o número de vértices é seguido pela matriz de adjacência
 int** leGrafo(char* nomeArquivo, int* n);
 
+// Lê uma fórmula de satisfabilidade armazenada em um arquivo texto, onde o número de cláusulas é seguido
+// pelas cláusulas em si
+int** leFormula(char* nomeArquivo, int* nLinhasRotulos, int* nColunasRotulos);
+
+// Retorna uma linha ou coluna da matriz de adjacência referente à posição de um literal no rótulo
+int mapeiaPosicaoLiteral(int** rotulos, int nLinhasRotulos, int nColunasRotulos, int posicaoLinha, int colunaLinha);
+
+// l e c conterão, respectivamente, a linha e a coluna da posição de um literal nos rótulos referente à
+// uma posição do vetor de solução
+void mapeiaSolucao(int** rotulos, int nLinhasRotulos, int nColunasRotulos, int posicaoSolucao, int* l, int* c);
+
+// Gera uma matriz de adjacência a partir de uma matriz de rótulos de uma fórmula de satisfabilidade
+int** rotulosEmMatriz(int** rotulos, int nLinhasRotulos, int nColunasRotulos, int* n);
+
 #endif
