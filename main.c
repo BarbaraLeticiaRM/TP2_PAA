@@ -56,6 +56,9 @@ int main(int argc, char* argv[]){
             entradaClique(matriz, n);
 
         solucao = bbConjuntoIndependente(matriz, n);
+        finalizarTempo(&a);
+        tempos[instancia] = (getDeltaTempo(&a));
+
         printf("solucao:\n");
 
         if(flagSatisfabilidade == 0){
@@ -64,10 +67,9 @@ int main(int argc, char* argv[]){
         }
         else{
             saidaSatisfabilidade(rotulos, solucao, nLinhasRotulos, nColunasRotulos, n);
+            finalizarTempo(&a);
+            tempos[instancia] = (getDeltaTempo(&a));
         }
-
-        finalizarTempo(&a);
-        tempos[instancia] = (getDeltaTempo(&a));
 
         // Desalocando a memória alocada dinamicamente
         free(solucao);

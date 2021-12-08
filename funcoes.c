@@ -129,7 +129,7 @@ int** leFormula(char* nomeArquivo, int* nLinhasRotulos, int* nColunasRotulos){
     return rotulos;
 }
 
-// Retorna a linha da matriz de adjacência referente à posição de um literal no rótulo
+// Retorna uma linha ou coluna da matriz de adjacência referente à posição de um literal no rótulo
 int mapeiaPosicaoLiteral(int** rotulos, int nLinhasRotulos, int nColunasRotulos, int posicaoLinha, int colunaLinha){
     int cont = -1, flag = 0;
     
